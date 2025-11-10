@@ -7,7 +7,8 @@ const foodSchema = new mongoose.Schema({
   pickupLocation: String,
   expireDate: Date,
   additionalNotes: String,
-  createdAt: { type: Date, default: Date.now }
+  createdAt: { type: Date, default: Date.now },
 });
 
-export default mongoose.model("Food", foodSchema);
+export default mongoose.model("Food", foodSchema, "platesharefoodz");
+
