@@ -6,8 +6,8 @@ const foodSchema = new mongoose.Schema(
     foodImage: { type: String, default: "https://via.placeholder.com/600x400" },
     foodQuantity: { type: String, required: true },
     donatorName: { type: String, default: "Anonymous" },
-    donatorEmail: { type: String }, // optional, useful for donor contact
-    donatorImage: { type: String }, // optional
+    donatorEmail: { type: String },
+    donatorImage: { type: String },
     pickupLocation: { type: String, default: "N/A" },
     expireDate: { type: Date },
     additionalNotes: { type: String, default: "None" },
@@ -19,7 +19,7 @@ const foodSchema = new mongoose.Schema(
   }
 );
 
-// Indexes
+
 foodSchema.index({ createdAt: -1 });
 foodSchema.index({ food_status: 1 });
 

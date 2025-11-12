@@ -1,9 +1,9 @@
-// server.js
+
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import foodRoutes from "./routes/foodRoutes.js"; // ✅ matches your file
+import foodRoutes from "./routes/foodRoutes.js";
 
 dotenv.config();
 
