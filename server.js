@@ -1,8 +1,9 @@
+// server.js
 import express from "express";
 import cors from "cors";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
-import foodRoutes from "./routes/foodRoutes.js";
+import foodRoutes from "./routes/foodRoutes.js"; // ✅ matches your file
 
 dotenv.config();
 
@@ -11,6 +12,11 @@ const PORT = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(express.json());
+app.use("/api/foods", foodRoutes);
+
+app.get("/", (req, res) => {
+  res.send("🔥 PlateShare API is running...");
+});
 
 mongoose.connect(process.env.MONGO_URI, { 
   useNewUrlParser: true, 
@@ -18,12 +24,6 @@ mongoose.connect(process.env.MONGO_URI, {
 })
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
-
-app.use("/api/foods", foodRoutes);
-
-app.get("/", (req, res) => {
-  res.send("🔥 PlateShare API is running...");
-});
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running on http://localhost:${PORT}`);
