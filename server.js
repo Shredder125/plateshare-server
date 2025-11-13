@@ -12,7 +12,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 app.use(cors({
-  origin: "*",
+  origin: "https://platesharefront.netlify.app",
   methods: ["GET", "POST", "PUT", "DELETE", "PATCH", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"]
 }));
@@ -30,7 +30,7 @@ app.get("/api/test", (req, res) => {
 
 app.use("/api/foods", foodRoutes);
 app.use("/api/food-requests", foodRequestsRouter);
-app.use("/api/food-requests", foodRequestsManagement);
+app.use("/api/food-requests-management", foodRequestsManagement);
 
 app.get("/", (req, res) => {
   res.send("PlateShare API is running...");
