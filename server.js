@@ -54,8 +54,8 @@ const startServer = async () => {
       useUnifiedTopology: true,
     });
     
-    console.log("✅ MongoDB connected successfully");
-    console.log("📊 Database name:", mongoose.connection.name);
+    console.log("MongoDB connected successfully");
+    console.log("Database name:", mongoose.connection.name);
     
     app.listen(PORT, () => {
       console.log(`Server running on http://localhost:${PORT}`);
