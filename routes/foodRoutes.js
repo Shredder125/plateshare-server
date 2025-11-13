@@ -24,7 +24,6 @@ router.get("/", async (req, res) => {
   }
 });
 
-
 router.get("/donator/:email", async (req, res) => {
   const { email } = req.params;
   try {
@@ -36,12 +35,9 @@ router.get("/donator/:email", async (req, res) => {
   }
 });
 
-
 router.get("/:id", async (req, res) => {
   const { id } = req.params;
-  if (!mongoose.Types.ObjectId.isValid(id)) {
-    return res.status(400).json({ message: "Invalid food ID format" });
-  }
+  if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ message: "Invalid food ID format" });
 
   try {
     let food = await Food.findById(id);
@@ -49,16 +45,13 @@ router.get("/:id", async (req, res) => {
       const allFoods = await Food.find();
       food = allFoods.find(f => f._id.toString() === id);
     }
-
     if (!food) return res.status(404).json({ message: "Food not found" });
-
     res.json(food);
   } catch (err) {
     console.error("Error fetching food by ID:", err);
     res.status(500).json({ message: "Error fetching food" });
   }
 });
-
 
 router.post("/", async (req, res) => {
   try {
@@ -100,7 +93,6 @@ router.post("/", async (req, res) => {
   }
 });
 
-
 router.put("/:id", async (req, res) => {
   const { id } = req.params;
   if (!mongoose.Types.ObjectId.isValid(id)) return res.status(400).json({ message: "Invalid ID" });
@@ -114,7 +106,6 @@ router.put("/:id", async (req, res) => {
     res.status(500).json({ message: "Failed to update food", error: err.message });
   }
 });
-
 
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
