@@ -15,12 +15,12 @@ app.use(cors());
 app.use(express.json());
 
 app.use((req, res, next) => {
-  console.log(`📍 ${req.method} ${req.path}`);
+  console.log(` ${req.method} ${req.path}`);
   next();
 });
 
 app.get("/api/test", (req, res) => {
-  console.log("✅ Backend test endpoint hit!");
+  console.log("Backend test endpoint hit!");
   res.json({ message: "Backend is reachable!" });
 });
 
@@ -29,7 +29,7 @@ app.use("/api/food-requests", foodRequestsRouter);
 app.use("/api/food-requests", foodRequestsManagement);
 
 app.get("/", (req, res) => {
-  res.send("🔥 PlateShare API is running...");
+  res.send("PlateShare API is running...");
 });
 
 app.use((err, req, res, next) => {
@@ -46,7 +46,7 @@ app.use((req, res) => {
 
 const startServer = async () => {
   try {
-    console.log("🔗 Connecting to MongoDB...");
+    console.log("Connecting to MongoDB...");
     console.log("MONGO_URI:", process.env.MONGO_URI?.substring(0, 30) + "...");
     
     await mongoose.connect(process.env.MONGO_URI, {
@@ -58,12 +58,12 @@ const startServer = async () => {
     console.log("📊 Database name:", mongoose.connection.name);
     
     app.listen(PORT, () => {
-      console.log(`🚀 Server running on http://localhost:${PORT}`);
-      console.log("📡 Ready to accept requests");
+      console.log(`Server running on http://localhost:${PORT}`);
+      console.log("Ready to accept requests");
     });
     
   } catch (err) {
-    console.error("❌ Failed to start server:", err.message);
+    console.error("Failed to start server:", err.message);
     process.exit(1);
   }
 };

@@ -9,7 +9,7 @@ router.post('/', async (req, res) => {
   try {
     let { foodId, userEmail, name, photoURL, location, reason, contactNo } = req.body;
     
-    console.log("📨 Received foodId:", foodId);
+    console.log("Received foodId:", foodId);
 
     if (!foodId || !userEmail || !name || !location || !reason || !contactNo) {
       return res.status(400).json({ message: 'All fields are required.' });
@@ -32,8 +32,8 @@ router.post('/', async (req, res) => {
       };
     }
 
-    console.log("✅ Food found:", foodItem.foodName);
-    console.log("💾 Creating request...");
+    console.log("Food found:", foodItem.foodName);
+    console.log("Creating request...");
 
     const newFoodRequest = new FoodRequest({
       foodId: foodId,
@@ -50,7 +50,7 @@ router.post('/', async (req, res) => {
     });
 
     const savedRequest = await newFoodRequest.save();
-    console.log("✅ Saved:", savedRequest._id);
+    console.log("Saved:", savedRequest._id);
 
     res.status(201).json({ 
       message: 'Request submitted successfully!', 
@@ -58,7 +58,7 @@ router.post('/', async (req, res) => {
     });
 
   } catch (error) {
-    console.error('❌ Error:', error.message);
+    console.error('Error:', error.message);
     res.status(500).json({ 
       message: 'Server error. Please try again.',
       error: error.message
